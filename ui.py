@@ -5,6 +5,7 @@ def print_menu(menu):
         i += 1
 
 
-def get_input():
-    x = input("Enter an input here: ")
+def get_input(user_input):
+    x = input(user_input)
     return x
+
