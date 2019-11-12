@@ -8,16 +8,17 @@ import os
 
 
 def main():
+    os.system('cls' if os.name == 'nt' else 'clear')
     main_menu()
-    x = int(data_manager.get_input())
+    x = int(ui.get_input())
     if x == 1:
-        student.main()
+        student.start_module()
     if x == 2:
-        student.main()
+        company.start_module()
     if x == 3:
-        student.main()
+        position.start_module()
     if x == 4:
-        student.main()
+        application.start_module()
     else:
         os.sys.exit()
 
