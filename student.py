@@ -25,7 +25,8 @@ def start_module():  # Prints menu
     if x == 3:
         read_students(table)
     if x == 4:
-        update_student()
+        student_ID = ui.get_input("Enter a student ID here: ")
+        update_student(table, student_ID, file_name)
     if x == 5:
         activate_deactivate_student()
     if x == 6:
@@ -33,12 +34,13 @@ def start_module():  # Prints menu
     if x == 7:
         main.main()
 
+
 def create_student(file_name):  # Create Student
 
     student_ID = ui.generate_random()
     student_name = ui.get_input("Enter a student name here: ")
     student_age = ui.get_input("Enter a student age here: ")
-    student_active = ui.get_input("Activity of student: ")
+    student_active = "Active"
     student = [student_ID, student_name, student_age, student_active]
 
     data_manager.export_file(student, file_name, "a")
@@ -55,8 +57,16 @@ def read_students(table):  # Read Students
     for i in table:
         print([i[0], i[1]])
 
-def update_student():  # Update Student
-    pass
+def update_student(table, student_ID, file_name):  # Update Student
+    updated_name = ui.get_input("Enter updated name here: ")
+    updated_age = ui.get_input("Enter updated age here: ")
+
+    for i in table:
+        if i[0] == student_ID:
+            i[1] = updated_name
+            i[2] = updated_age
+
+    data_manager.export_file(table, file_name, "w")
 
 def activate_deactivate_student():  # Activate/Deactivate Student
     pass
