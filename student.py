@@ -28,9 +28,11 @@ def start_module():  # Prints menu
         student_ID = ui.get_input("Enter a student ID here: ")
         update_student(table, student_ID, file_name)
     if x == 5:
-        activate_deactivate_student()
+        student_ID = ui.get_input("Enter a student ID here: ")
+        activate_deactivate_student(table, student_ID, file_name)
     if x == 6:
-        delete_student()
+        student_ID = ui.get_input("Enter a student ID here: ")
+        delete_student(table, student_ID, file_name)
     if x == 7:
         main.main()
 
@@ -52,10 +54,10 @@ def read_student(student_ID, table):  # Read Student
             return i
 
 
-
 def read_students(table):  # Read Students
     for i in table:
         print([i[0], i[1]])
+
 
 def update_student(table, student_ID, file_name):  # Update Student
     updated_name = ui.get_input("Enter updated name here: ")
@@ -68,9 +70,26 @@ def update_student(table, student_ID, file_name):  # Update Student
 
     data_manager.export_file(table, file_name, "w")
 
-def activate_deactivate_student():  # Activate/Deactivate Student
-    pass
 
-def delete_student():  # Delete Students
-    pass
+def activate_deactivate_student(table, student_ID, file_name):  # Activate/Deactivate Student
+    for i in table:
+        if i[0] == student_ID:
+            change = input("Student's current status is: " + i[3] + "  Would you like to change it? (Y/N) ")
+            if change.upper() == "Y" and i[3] == "Active":
+                i[3] = "Inactive"
+                continue
+            if change.upper() == "Y" and i[3] == "Inactive":
+                i[3] = "Active"
+            else:
+                continue
+
+    data_manager.export_file(table, file_name, "w")
+
+def delete_student(table, student_ID, file_name):  # Delete Students
+    for i in table:
+        if i[0] == student_ID:
+            table.remove(i)
+
+    data_manager.export_file(table, file_name, "w")
+
 

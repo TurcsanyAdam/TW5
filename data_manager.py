@@ -13,5 +13,5 @@ def export_file(table, file_name, mode):
             f.write(",".join(table) + "\n")
         elif mode == "w":
             for record in table:
-                row = ';'.join(record)
+                row = ','.join(record)
                 f.write(row + "\n")
