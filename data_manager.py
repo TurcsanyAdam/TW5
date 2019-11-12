@@ -1,11 +1,11 @@
 def import_file(file_name):
 
-    with open(file_name, "r" as f):
+    with open(file_name, "r") as f:
         lines= f.readlines()
-        for element in lines:
-            element.replace("\n", "")
-            element.split(",")
-    pass
+
+    table = [element.replace("\n", "").split(",") for element in lines]
+    return table
+
 
 
 

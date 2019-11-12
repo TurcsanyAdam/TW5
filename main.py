@@ -10,7 +10,7 @@ import os
 def main():
     os.system('cls' if os.name == 'nt' else 'clear')
     main_menu()
-    x = int(ui.get_input())
+    x = int(ui.get_input("Enter a number: "))
     if x == 1:
         student.start_module()
     if x == 2:
