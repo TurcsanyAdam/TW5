@@ -6,6 +6,7 @@ import os
 
 
 def start_module():
+    os.system('cls' if os.name == 'nt' else 'clear')
     file_name = "company.csv"
     table = data_manager.import_file(file_name)
     menu = ["Create Company",
