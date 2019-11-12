@@ -18,7 +18,7 @@ def start_module():  # Prints menu
     ui.print_menu(menu)
     x = int(ui.get_input("Enter a number here: "))
     if x == 1:
-        create_student()
+        create_student(file_name)
     if x == 2:
         student_ID = ui.get_input("Enter a student ID here: ")
         read_student(student_ID, table)
@@ -33,13 +33,15 @@ def start_module():  # Prints menu
     if x == 7:
         main.main()
 
-def create_student():  # Create Student
+def create_student(file_name):  # Create Student
 
-    student_ID = ui.get_input("Enter a student ID here: ")
+    student_ID = ui.generate_random()
     student_name = ui.get_input("Enter a student name here: ")
     student_age = ui.get_input("Enter a student age here: ")
     student_active = ui.get_input("Activity of student: ")
     student = [student_ID, student_name, student_age, student_active]
+
+    data_manager.export_file(student, file_name, "a")
 
 
 def read_student(student_ID, table):  # Read Student
@@ -50,7 +52,8 @@ def read_student(student_ID, table):  # Read Student
 
 
 def read_students(table):  # Read Students
-    print(table)
+    for i in table:
+        print([i[0], i[1]])
 
 def update_student():  # Update Student
     pass

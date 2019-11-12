@@ -36,18 +36,11 @@ def print_table(table, title_list):
 def generate_random():
     lowercase = "abcdefghijklmnopqrstuvwxyz"
     uppercase = lowercase.upper()
-    symbols = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', '<', '=', '>', '?',
-               '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~']
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     passw = ""
-    while len(passw) != 8:
-        passw += (random.choice(uppercase))
+    while len(passw) != 9:
         passw += (random.choice(uppercase))
         passw += (random.choice(lowercase))
-        passw += (random.choice(lowercase))
-        passw += (random.choice(symbols))
-        passw += (random.choice(symbols))
-        passw += (str(random.choice(numbers)))
         passw += (str(random.choice(numbers)))
     random_id = list(passw)
     random.shuffle(random_id)
