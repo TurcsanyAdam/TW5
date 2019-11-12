@@ -1,4 +1,5 @@
 def print_menu(menu):
-    i = 0
+    i = 1
     for line in menu:
-        print("(" + i + ") " + line)
+        print("(" + str(i) + ") " + line)
+        i += 1
