@@ -7,7 +7,7 @@ import company
 
 def start_module():
     os.system('cls' if os.name == 'nt' else 'clear')
-    file_name = "position.csv"
+    file_name = "postion.csv"
     table = data_manager.import_file(file_name)
 
     menu = ["Create position",
@@ -60,6 +60,11 @@ def create_position(file_name):
 
 
 def read_position():
+    '''
+
+    Users can show the details of existing positions by entering their ID.
+    “Students” already applied are shown here.'''
+
     pass
 
 def read_positions():

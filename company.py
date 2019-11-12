@@ -90,9 +90,12 @@ def delete_company(table, file_name):
     Users can delete existing companies by entering their ID.
     Companies cannot be deleted if they have an existing “Position”.'''
 
+
+
     company_id_by_user = ui.get_input("Enter company id: ")
-    for i in table:
-        if i[0] == company_id_by_user:
-            table.remove(i)
-        data_manager.export_file(table, file_name, "w")
-    pass
+    for j in data_manager.import_file("postion.csv"):
+        if j[3] != company_id_by_user:
+            for i in table:
+                if i[0] == company_id_by_user:
+                    table.remove(i)
+                    data_manager.export_file(table, file_name, "w")
