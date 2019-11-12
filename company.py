@@ -93,9 +93,13 @@ def delete_company(table, file_name):
 
 
     company_id_by_user = ui.get_input("Enter company id: ")
+    is_in_position = True
     for j in data_manager.import_file("postion.csv"):
-        if j[3] != company_id_by_user:
-            for i in table:
-                if i[0] == company_id_by_user:
-                    table.remove(i)
-                    data_manager.export_file(table, file_name, "w")
+        if j[3] == company_id_by_user:
+            is_in_position = False
+
+    if is_in_position:
+        for i in table:
+            if i[0] == company_id_by_user:
+                table.remove(i)
+                data_manager.export_file(table, file_name, "w")

@@ -44,11 +44,12 @@ def create_application(file_name):
     student_ID = input("Enter student ID here: ")
     position_ID = input("Enter position ID here: ")
     accepted = "Pending"
-
-    if student_ID in "student.csv":
-        if position_ID in "position.csv":
-            application_data = [application_ID, accepted, student_ID, position_ID]
-            data_manager.export_file(application_data, file_name, "a")
+    application_data = [application_ID, accepted, student_ID, position_ID]
+    for i in data_manager.import_file("student.csv"):
+        if i[0] == student_ID:
+            for j in data_manager.import_file("postion.csv"):
+                if j[0] == position_ID:
+                    data_manager.export_file(application_data, file_name, "a")
 
 
 def update_application(table, file_name, application_ID):
