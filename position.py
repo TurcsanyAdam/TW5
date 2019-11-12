@@ -49,9 +49,10 @@ def create_position(file_name):
     description = ui.get_input("Write position description: ")
     number_of_seat = ui.get_input("Enter the number of seats: ")
     company_id_position = ui.get_input("Enter company id: ")
-    if company_id_position in data_manager.import_file("company.csv"):
-        final_id = [ position_id, description, number_of_seat, company_id_position]
-        data_manager.export_file(final_id, file_name, "a")
+    for i in data_manager.import_file("company.csv"):
+        if i[0] == company_id_position:
+            final_id = [ position_id, description, number_of_seat, company_id_position]
+            data_manager.export_file(final_id, file_name, "a")
 
 
 
