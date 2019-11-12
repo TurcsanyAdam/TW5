@@ -18,7 +18,7 @@ def start_module():
     ui.print_menu(menu)
     x = int(ui.get_input("Enter a number: "))
     if x == 1:
-        create_company(table)
+        create_company(table, file_name)
     elif x == 2:
         read_company(table)
     elif x == 3:
@@ -33,12 +33,17 @@ def start_module():
 
 
 
-def create_company(table):
+def create_company(table, file_name):
     '''
 
     Users can create new companies. Companies have an ID, name.
     IDs and names of companies are unique amongst other companies.'''
-    
+    company_id = ui.generate_random()
+    company_name = ui.get_input("Enter your company name: ")
+    company_datas = [company_id, company_name]
+    data_manager.export_file(company_datas, file_name,"a")
+
+
 
 
 def read_company(table):

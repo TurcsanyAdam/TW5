@@ -1,3 +1,5 @@
+import random
+
 def print_menu(menu):
     i = 1
     for line in menu:

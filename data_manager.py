@@ -8,5 +8,6 @@ def import_file(file_name):
 
 
 
-def export_file(table, file_name):
-    pass
+def export_file(table, file_name, mode):
+    with open (file_name, mode) as f:
+        f.write(",".join(table) + "\n")
