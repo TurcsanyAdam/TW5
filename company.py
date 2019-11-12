@@ -20,13 +20,13 @@ def start_module():
     if x == 1:
         create_company(table, file_name)
     elif x == 2:
-        read_company(table)
+        read_company(table, file_name)
     elif x == 3:
-        read_companys(table)
+        read_companys(table, file_name)
     elif x == 4:
-        update_company(table)
+        update_company(table, file_name)
     elif x == 5:
-        delete_company(table)
+        delete_company(table, file_name)
     elif x == 6:
         main.main()
 
@@ -46,15 +46,52 @@ def create_company(table, file_name):
 
 
 
-def read_company(table):
-    pass
+def read_company(table, file_name):
+    '''
+
+    Users can show the details of existing companies by entering their ID.
+    All “Position” of a company shows up here.'''
+    company_id_by_user = ui.get_input("Enter a company id: ")
+    for i in table:
+        if i[0] == company_id_by_user:
+            print(i)
 
 
-def read_companys(table):
-    pass
+def read_companys(table, file_name):
+    '''
 
-def update_company(table):
-    pass
+    Users can list the IDs and names of all companies in the system.'''
+    for i in table:
+        print(i)
 
-def delete_company(table):
+
+def update_company(table, file_name):
+    '''
+
+    Users can update the details of existing companies by first entering their ID and then the information (name) to be updated.
+    IDs cannot be updated.
+    Company names can be updated, but they should stay unique.'''
+    company_id_by_user = ui.get_input("Enter company id: ")
+    for i in table:
+        if i[0] == company_id_by_user:
+            new_name = ui.get_input("Enter new company name: ")
+            i[1] = new_name
+            new_datas = [i]
+
+    data_manager.export_file(table,file_name,"w")
+
+
+
+
+def delete_company(table, file_name):
+    '''
+
+    Users can delete existing companies by entering their ID.
+    Companies cannot be deleted if they have an existing “Position”.'''
+
+    company_id_by_user = ui.get_input("Enter company id: ")
+    for i in table:
+        if i[0] == company_id_by_user:
+            table.remove(i)
+        data_manager.export_file(table, file_name, "w")
     pass
