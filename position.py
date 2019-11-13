@@ -21,14 +21,15 @@ def start_module():
     x = int(ui.get_input("Enter a number: "))
 
     if x == 1:
-
         create_position(file_name)
     elif x == 2:
-        read_position(table, file_name)
+        position_id = ui.get_input("Enter a position ID here: ")
+        read_position(table, position_id)
     elif x== 3:
-        read_positions(table, file_name)
+        read_positions(table)
     elif x == 4:
-        update_position(table, file_name)
+        position_id = ui.get_input("Enter a position ID here: ")
+        update_position(table, file_name, position_id)
     elif x == 5:
         delete_position(table, file_name)
     elif x == 6:
@@ -55,23 +56,47 @@ def create_position(file_name):
             data_manager.export_file(final_id, file_name, "a")
 
 
-
-
-
-
-def read_position():
+def read_position(table, position_id):
     '''
 
     Users can show the details of existing positions by entering their ID.
     “Students” already applied are shown here.'''
+    for i in table:
+        if i[0] == position_id:
+            print(i)
 
+
+def read_positions(table):
+    for i in table:
+        pos_count = 0
+        for j in data_manager.import_file("application.csv"):
+            if i[0] == j[3] and j[1] == "Accepted":
+                pos_count += 1
+        temp = i[2]
+        i[2] = temp + "/" + str(pos_count)
+        print(i)
     pass
 
-def read_positions():
-    pass
 
-def update_position():
-    pass
+def update_position(table, file_name, position_ID):
+    updated_desc = input("Enter updated description here: ")
 
-def delete_position():
-    pass
+    for i in table:
+        if i[0] == position_ID:
+            i[1] = updated_desc
+
+    data_manager.export_file(table, file_name, "w")
+
+def delete_position(table, file_name):
+
+    position_id_by_user = ui.get_input("Enter position id: ")
+    is_in_position = True
+    for j in data_manager.import_file("application.csv"):
+        if j[3] == position_id_by_user:
+            is_in_position = False
+
+    if is_in_position:
+        for i in table:
+            if i[0] == position_id_by_user:
+                table.remove(i)
+    data_manager.export_file(table, file_name, "w")
